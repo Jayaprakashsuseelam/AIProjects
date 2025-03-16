@@ -1,3 +1,6 @@
+//**
+* Author : JP
+*//
 from google import genai
 import PIL.Image
 
