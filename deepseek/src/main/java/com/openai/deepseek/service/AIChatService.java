@@ -1,20 +1,21 @@
 package com.openai.deepseek.service;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
-import java.util.Map;
 
 @Service
-@RequiredArgsConstructor
 public class AIChatService {
     private final WebClient webClient;
 
-    public Mono<String> getChatResponse(String message) {
+    public AIChatService(WebClient.Builder webClientBuilder) {
+        this.webClient = webClientBuilder.baseUrl("https://api.deepseek.com").build();
+    }
+
+    public Mono<String> getAIResponse(String prompt) {
         return webClient.post()
-                .uri("/chat/completions")
-                .bodyValue(Map.of("prompt", message))
+                .uri("/v1/generate") // Assuming the endpoint
+                .bodyValue("{\"prompt\": \"" + prompt + "\", \"max_tokens\": 100}")
                 .retrieve()
                 .bodyToMono(String.class);
     }
