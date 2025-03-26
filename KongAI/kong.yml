@@ -1,0 +1,11 @@
+_format_version: "2.1"
+_transform: true
+
+services:
+  - name: openai-service
+    url: https://api.openai.com/v1/chat/completions
+    routes:
+      - name: openai-route
+        paths:
+          - /v1/chat/completions
+        strip_path: true 
