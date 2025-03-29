@@ -1,2 +1,2 @@
 # AIProjects
-This repository contains
+This project contains respositoris for AI and IoT.
